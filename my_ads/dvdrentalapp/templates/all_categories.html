@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+    
+    <h1>Categories</h1>
+
+    <ul>
+        {% for x in category %}
+            <li>{{ x.category_id }} {{x.name }} {{ x.last_update }}</li>
+        {% endfor %}
+    </ul>
+ 
+</body>
+</html>
