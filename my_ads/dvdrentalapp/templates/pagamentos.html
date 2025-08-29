@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Histórico de pagamentos de: {{ customer_name }} </h2>
+
+<p>Back to <a href="/customer">Customers</a></p>
+
+<table border="1">
+    <tr>
+        <th>payment_id</th>
+        <th>payment_date</th>
+    </tr>
+    {% for x in myPayment %}
+    <tr>
+        <td>{{ x.payment_id }}</td>
+        <td>{{ x.payment_date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+
+</html>

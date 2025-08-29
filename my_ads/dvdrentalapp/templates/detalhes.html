@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Detalhes para {{ customer_name }} </h2>
+
+<p>Back to <a href="/customer">Customers</a></p>
+
+<table border="1">
+    <tr>
+        <th>inventory-id</th>
+        <th>rental_date</th>
+    </tr>
+    {% for x in myDetalhe %}
+    <tr>
+        <td>{{ x.inventory_id }}</td>
+        <td>{{ x.rental_date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+
+</html>
