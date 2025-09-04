@@ -49,7 +49,8 @@ def detalhes(request, id):
     return HttpResponse(template.render(context, request))
 
 def address(request, id):
-    myAddress = Address.objects.filter(customer__id=id)
+    myAddress = Address.objects.filter(customer__customer_id=id)
+
     customer = get_object_or_404(Customer, pk=id)
 
     template = loader.get_template('all_address.html')
@@ -66,7 +67,7 @@ def edit_address(request, address_id):
         address.address2 = request.POST.get('address2')
         address.postal_code = request.POST.get('postal_code')
         address.save()
-        return redirect(f'/address/{address_id}')
+        return redirect(f'/address/{address.customer.id}')
     return render(request, 'edit_address.html', {'address': address})
 
 

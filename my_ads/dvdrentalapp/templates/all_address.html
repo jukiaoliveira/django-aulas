@@ -6,8 +6,7 @@
 
     <ul>
         {% for x in myAddress %}
-            <li><a href="/edit_address/{{x.id}}">{{ x.customer.first_name }} {{x.customer.last_name }}</a>
-            </li>
+            <li><a href="/edit_address/{{x.id}}">{{ x.customer.first_name }} {{x.customer.last_name }}</a></li>
         {% endfor %}
     </ul>
  
