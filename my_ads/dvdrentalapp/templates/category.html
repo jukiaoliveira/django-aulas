@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Category</h1>
+ 
+<ul>
+ {% for x in category1 %}
+ <li><a href="/edit_category/{{x.category_id}}">{{ x.name }} {{ x.last_update }}</a></li>
+ {% endfor %}
+</ul>
+</body>
+</html>

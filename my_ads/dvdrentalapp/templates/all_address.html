@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+    
+    <h1>Endereço: {{ customer_name }}</h1>
+
+    <ul>
+        {% for x in myAddress %}
+            <li><a href="/edit_address/{{x.id}}">{{ x.customer.first_name }} {{x.customer.last_name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+ 
+</body>
+</html>

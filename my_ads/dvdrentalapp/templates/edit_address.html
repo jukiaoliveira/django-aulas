@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Editar Endereço</title>
+  </head>
+  <body>
+    <h2>Editar Endereço</h2>
+
+    <form method="post">
+      {% csrf_token %}
+      <label for="address2">Endereço 2:</label><br />
+      <input
+        type="text"
+        id="address2"
+        name="address2"
+        value="{{ address.address2 }}"
+      /><br />
+      <label for="postal_code">Código Postal:</label><br />
+      <input
+        type="text"
+        id="postal_code"
+        name="postal_code"
+        value="{{ address.postal_code }}"
+      /><br />
+
+      <input type="submit" value="Salvar Alterações" /><br />
+    </form>
+  </body>
+</html>

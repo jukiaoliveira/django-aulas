@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Cliente</title>
+</head>
+<body>
+    
+    <h2>Editar Cliente</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="first_name">Primeiro Nome:</label><br>
+    <input type="text" id="first_name" value="{{ customer.first_name }}"><br>
+    <label for="last_name">Último Nome:</label><br>
+    <input type="text" id="last_name" value="{{ customer.last_name }}"><br>
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" value="{{ customer.email }}"><br>>
+
+    <input type="submit" value="Salvar Alterações"><br>
+</form>
+
+</body>
+</html>
