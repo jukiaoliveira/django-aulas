@@ -4,9 +4,10 @@
 
 from django.http import HttpResponse
 from django.template import loader
-from .models import Customer, Category, Rental, Payment, Address
+from .models import Customer, Category, Rental, Payment, Address, Film, Language
 from django.shortcuts import get_object_or_404, render, redirect 
 from datetime import datetime
+from django.utils import timezone
 
 def customer(request):
     mycustomers = Customer.objects.all().values()
@@ -98,6 +99,17 @@ def category1(request):
         'category1': mycategorys,
     }
     return HttpResponse(template.render(context, request))
+
+def add_category(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+
+        category1 = Category(name=name, last_update=timezone.now())
+        category1.save()
+
+        return redirect('/category1')
+    
+    return render(request, 'add_category.html')
  
 def edit_category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
@@ -108,3 +120,19 @@ def edit_category(request, category_id):
         return redirect('/category1')
     return render(request, 'edit_category.html', {'category' : category})
  
+def list_filme(request):
+    films = Film.objects.all()
+    return render(request, 'list_filme.html', {'films':films})
+
+def add_film(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+
+        if name:
+            film = Film(title=name, language_id=1, rental_duration=3, rental_rate=4.99, replacement_cost=19.99, last_update=timezone.now()) 
+            film.save()
+            return redirect('/film')
+        else:
+            return render(request, 'add_film.html', {'error': 'O nome do filme é obrigatório.'})
+
+    return render(request, 'add_film.html')

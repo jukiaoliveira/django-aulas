@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adicionar Novo Filme</title>
+</head>
+<body>
+    
+    <h2>Adicionar Novo Filme</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Nome:</label><br>
+        <input type="text" id="name" name="name" required><br>
+
+        <input type="submit" value="Adicionar Novo Filme">
+    </form>
+</body>
+</html>

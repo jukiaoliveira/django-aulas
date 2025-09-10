@@ -12,4 +12,7 @@ urlpatterns = [
     path('category/', views.category, name='category'),
     path('category1/', views.category1, name='category1'),
     path('edit_category/<int:category_id>/', views.edit_category, name='edit_category'),
+    path('add_category', views.add_category, name='add_category'),
+    path('film/', views.list_filme, name='list_filme'),
+    path('add_film/', views.add_film, name='add_film'),
 ]
