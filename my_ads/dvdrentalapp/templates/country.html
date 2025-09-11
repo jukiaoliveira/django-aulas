@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h1>Country</h1>
+
+    <form action="{% url 'listacountry' %}" method="get">
+        <label for="search_name">Procura pelo country:</label>
+        <input type="text" id="search_name" name="search_name">
+        <button type="submit">Procurar</button>
+    </form>
+
+    <ul>
+        {% for x in listcountry %}
+        <li>{{ x.country_id }} - {{ x.country }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
