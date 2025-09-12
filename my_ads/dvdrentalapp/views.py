@@ -276,3 +276,11 @@ def listacountry(request):
         'listcountry':mycountry,
     }
     return HttpResponse(template.render(context, request))
+
+def listacustomer2(request):
+    mycustomers = Customer.objects.all().values()
+    template = loader.get_template('customers2.html')
+    context = {
+        'listcustomer2': mycustomers,
+    }
+    return HttpResponse(template.render(context, request))

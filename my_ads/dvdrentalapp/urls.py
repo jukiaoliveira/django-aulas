@@ -17,5 +17,6 @@ urlpatterns = [
     # path('add_film/', views.add_film, name='add_film'),
     # path('listacustomer/', views.listacustomer, name='listacustomer'),
     # path('listacustomer1/', views.listacustomer1, name='listacustomer1'),
-    path('listacountry/', views.listacountry, name='listacountry'),
+    # path('listacountry/', views.listacountry, name='listacountry'),
+    path('listacustomer2/', views.listacustomer2, name='listacustomer2'),
 ]

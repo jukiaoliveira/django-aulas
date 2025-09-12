@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="{% static 'mycss.css' %}">
+<body>
+
+    <h1>Customers</h1>
+
+    <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for x in listcustomer2 %}
+          <tr class="{% if x.active %}ativo{% else %}inativo{% endif %}">
+            <td>{{ x.customer_id }}</td>
+            <td>{{ x.first_name }}</td>
+            <td>{{ x.last_name }}</td>
+            <td>{{ x.active|yesno:"Ativo,Inativo" }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
