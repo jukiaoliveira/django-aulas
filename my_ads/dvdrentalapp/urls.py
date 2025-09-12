@@ -18,5 +18,7 @@ urlpatterns = [
     # path('listacustomer/', views.listacustomer, name='listacustomer'),
     # path('listacustomer1/', views.listacustomer1, name='listacustomer1'),
     # path('listacountry/', views.listacountry, name='listacountry'),
-    path('listacustomer2/', views.listacustomer2, name='listacustomer2'),
+    # path('listacustomer2/', views.listacustomer2, name='listacustomer2'),
+    path('customer_form/', views.customer_form_view, name='customer_form_view'),
+    path('salva', views.salva, name='salva'),
 ]

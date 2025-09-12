@@ -8,6 +8,7 @@ from .models import Customer, Category, Rental, Payment, Address, Film, Language
 from django.shortcuts import get_object_or_404, render, redirect
 from datetime import datetime
 from django.utils import timezone
+from .forms import CustomerForm
 
 def customer(request):
     mycustomers = Customer.objects.all().values()
@@ -284,3 +285,17 @@ def listacustomer2(request):
         'listcustomer2': mycustomers,
     }
     return HttpResponse(template.render(context, request))
+
+def customer_form_view(request):
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('salva')
+        else:
+            form = CustomerForm()
+
+        return render(request, 'Customer_form_template.html', {'form':form})
+    
+def salva(request):
+    return render(request, "salva.html")
