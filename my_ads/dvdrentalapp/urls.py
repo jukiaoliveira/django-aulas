@@ -18,7 +18,9 @@ urlpatterns = [
     # path('listacustomer/', views.listacustomer, name='listacustomer'),
     # path('listacustomer1/', views.listacustomer1, name='listacustomer1'),
     # path('listacountry/', views.listacountry, name='listacountry'),
+    # path('listacity/<int:id>', views.listacity, name='listacity'),
+    # path('listaaddress/<int:id>', views.listaaddress, name='listaaddress'),
     # path('listacustomer2/', views.listacustomer2, name='listacustomer2'),
-    path('customer_form/', views.customer_form_view, name='customer_form_view'),
-    path('salva', views.salva, name='salva'),
+    # path('customer_form/', views.customer_form_view, name='customer_form_view'),
+    # path('salva', views.salva, name='salva'),
 ]

@@ -12,7 +12,7 @@
 
     <ul>
         {% for x in listcountry %}
-        <li>{{ x.country_id }} - {{ x.country }}</li>
+        <li>{{ x.country_id }} - <a href="/listacity/{{x.country_id}}">{{ x.country }}</a></li>
         {% endfor %}
     </ul>
 </body>

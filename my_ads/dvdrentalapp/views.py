@@ -4,139 +4,139 @@
 
 from django.http import HttpResponse
 from django.template import loader
-from .models import Customer, Category, Rental, Payment, Address, Film, Language, Country
+from .models import Customer, Category, Rental, Payment, Address, Film, Language, Country, City
 from django.shortcuts import get_object_or_404, render, redirect
 from datetime import datetime
 from django.utils import timezone
 from .forms import CustomerForm
 
-def customer(request):
-    mycustomers = Customer.objects.all().values()
-    template = loader.get_template('all_customers.html')
-    context = {
-        'mycustomer': mycustomers,
-}
+# def customer(request):
+#     mycustomers = Customer.objects.all().values()
+#     template = loader.get_template('all_customers.html')
+#     context = {
+#         'mycustomer': mycustomers,
+# }
 
-    return HttpResponse(template.render(context, request))
+#     return HttpResponse(template.render(context, request))
 
-def customer1(request):
-    mycustomers = Customer.objects.all().values()
-    template = loader.get_template('list_customers.html')
-    context = {
-        'customer1': mycustomers,
-}
+# def customer1(request):
+#     mycustomers = Customer.objects.all().values()
+#     template = loader.get_template('list_customers.html')
+#     context = {
+#         'customer1': mycustomers,
+# }
 
-    return HttpResponse(template.render(context, request))
+#     return HttpResponse(template.render(context, request))
 
-def edit_customer(request, customer_id):
-    customer = get_object_or_404(Customer, pk=customer_id)
-    if request.method == "POST":
-        customer.first_name = request.POST.get('first_name')
-        customer.last_name = request.POST.get('last_name')
-        customer.email = request.POST.get('email')
+# def edit_customer(request, customer_id):
+#     customer = get_object_or_404(Customer, pk=customer_id)
+#     if request.method == "POST":
+#         customer.first_name = request.POST.get('first_name')
+#         customer.last_name = request.POST.get('last_name')
+#         customer.email = request.POST.get('email')
 
-        customer.save()
-        return redirect('/customer')
-    return render(request, 'edit_customer.html', {'customer': customer})
+#         customer.save()
+#         return redirect('/customer')
+#     return render(request, 'edit_customer.html', {'customer': customer})
 
-def detalhes(request, id):
-    myDetalhes = Rental.objects.filter(customer_id=id)
-    customer = get_object_or_404(Customer, pk=id)
+# def detalhes(request, id):
+#     myDetalhes = Rental.objects.filter(customer_id=id)
+#     customer = get_object_or_404(Customer, pk=id)
 
-    template = loader.get_template('detalhes.html')
-    context = {
-        'myDetalhe' : myDetalhes,
-        'customer_name' : f"{customer.first_name} {customer.last_name}",
-    }
-    return HttpResponse(template.render(context, request))
+#     template = loader.get_template('detalhes.html')
+#     context = {
+#         'myDetalhe' : myDetalhes,
+#         'customer_name' : f"{customer.first_name} {customer.last_name}",
+#     }
+#     return HttpResponse(template.render(context, request))
 
-def address(request, id):
-    myAddress = Address.objects.filter(customer__customer_id=id)
+# def address(request, id):
+#     myAddress = Address.objects.filter(customer__customer_id=id)
 
-    customer = get_object_or_404(Customer, pk=id)
+#     customer = get_object_or_404(Customer, pk=id)
 
-    template = loader.get_template('all_address.html')
-    context = {
-        'myAddress': myAddress,
-        'customer_name': f"{customer.first_name} {customer.last_name}",
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def edit_address(request, address_id):
-    address = get_object_or_404(Address, pk=address_id)
-    if request.method == "POST":
-        address.address2 = request.POST.get('address2')
-        address.postal_code = request.POST.get('postal_code')
-        address.save()
-        return redirect(f'/address/{address.customer.id}')
-    return render(request, 'edit_address.html', {'address': address})
+#     template = loader.get_template('all_address.html')
+#     context = {
+#         'myAddress': myAddress,
+#         'customer_name': f"{customer.first_name} {customer.last_name}",
+#     }
+#     return HttpResponse(template.render(context, request))
 
 
-def pagamentos(request, id):
-    myPayment = Payment.objects.filter(customer_id=id)
-    customer = get_object_or_404(Customer, pk=id)
+# def edit_address(request, address_id):
+#     address = get_object_or_404(Address, pk=address_id)
+#     if request.method == "POST":
+#         address.address2 = request.POST.get('address2')
+#         address.postal_code = request.POST.get('postal_code')
+#         address.save()
+#         return redirect(f'/address/{address.customer.id}')
+#     return render(request, 'edit_address.html', {'address': address})
 
-    template = loader.get_template('pagamentos.html')
-    context = {
-        'myPayment' : myPayment,
-        'customer_name' : f"{customer.first_name} {customer.last_name}",
-    }
-    return HttpResponse(template.render(context, request))
 
-def category(request):
-    category = Category.objects.all().values()
-    template = loader.get_template('all_categories.html')
-    context = {
-        'category': category,
-}
+# def pagamentos(request, id):
+#     myPayment = Payment.objects.filter(customer_id=id)
+#     customer = get_object_or_404(Customer, pk=id)
 
-    return HttpResponse(template.render(context, request))
+#     template = loader.get_template('pagamentos.html')
+#     context = {
+#         'myPayment' : myPayment,
+#         'customer_name' : f"{customer.first_name} {customer.last_name}",
+#     }
+#     return HttpResponse(template.render(context, request))
 
-def category1(request):
-    mycategorys = Category.objects.all().values()
-    template = loader.get_template('category.html')
-    context = {
-        'category1': mycategorys,
-    }
-    return HttpResponse(template.render(context, request))
+# def category(request):
+#     category = Category.objects.all().values()
+#     template = loader.get_template('all_categories.html')
+#     context = {
+#         'category': category,
+# }
 
-def add_category(request):
-    if request.method == "POST":
-        name = request.POST.get('name')
+#     return HttpResponse(template.render(context, request))
 
-        category1 = Category(name=name, last_update=timezone.now())
-        category1.save()
+# def category1(request):
+#     mycategorys = Category.objects.all().values()
+#     template = loader.get_template('category.html')
+#     context = {
+#         'category1': mycategorys,
+#     }
+#     return HttpResponse(template.render(context, request))
 
-        return redirect('/category1')
+# def add_category(request):
+#     if request.method == "POST":
+#         name = request.POST.get('name')
 
-    return render(request, 'add_category.html')
+#         category1 = Category(name=name, last_update=timezone.now())
+#         category1.save()
 
-def edit_category(request, category_id):
-    category = get_object_or_404(Category, pk=category_id)
-    if request.method == "POST":
-        category.name = request.POST.get('name')
-        category.last_update = datetime.now()
-        category.save()
-        return redirect('/category1')
-    return render(request, 'edit_category.html', {'category' : category})
+#         return redirect('/category1')
 
-def list_filme(request):
-    films = Film.objects.all()
-    return render(request, 'list_filme.html', {'films':films})
+#     return render(request, 'add_category.html')
 
-def add_film(request):
-    if request.method == "POST":
-        name = request.POST.get('name')
+# def edit_category(request, category_id):
+#     category = get_object_or_404(Category, pk=category_id)
+#     if request.method == "POST":
+#         category.name = request.POST.get('name')
+#         category.last_update = datetime.now()
+#         category.save()
+#         return redirect('/category1')
+#     return render(request, 'edit_category.html', {'category' : category})
 
-        if name:
-            film = Film(title=name, language_id=1, rental_duration=3, rental_rate=4.99, replacement_cost=19.99, last_update=timezone.now())
-            film.save()
-            return redirect('/film')
-        else:
-            return render(request, 'add_film.html', {'error': 'O nome do filme é obrigatório.'})
+# def list_filme(request):
+#     films = Film.objects.all()
+#     return render(request, 'list_filme.html', {'films':films})
 
-    return render(request, 'add_film.html')
+# def add_film(request):
+#     if request.method == "POST":
+#         name = request.POST.get('name')
+
+#         if name:
+#             film = Film(title=name, language_id=1, rental_duration=3, rental_rate=4.99, replacement_cost=19.99, last_update=timezone.now())
+#             film.save()
+#             return redirect('/film')
+#         else:
+#             return render(request, 'add_film.html', {'error': 'O nome do filme é obrigatório.'})
+
+#     return render(request, 'add_film.html')
 
 # def listacustomer(request):
 #     mycustomers = Customer.objects.all().values()
@@ -264,38 +264,58 @@ def add_film(request):
 #     }
 #     return HttpResponse(template.render(context, request))
 
-def listacountry(request):
-    search_name = request.GET.get('search_name', '')
+# def listacountry(request):
+#     search_name = request.GET.get('search_name', '')
 
-    if search_name:
-        mycountry = Country.objects.filter(country__contains=search_name).values() | Country.objects.filter(country_id__contains=search_name).values()
-    else:
-        mycountry = Country.objects.all().values()
+#     if search_name:
+#         mycountry = Country.objects.filter(country__contains=search_name).values() | Country.objects.filter(country_id__contains=search_name).values()
+#     else:
+#         mycountry = Country.objects.all().values()
 
-    template = loader.get_template('country.html')
-    context = {
-        'listcountry':mycountry,
-    }
-    return HttpResponse(template.render(context, request))
+#     template = loader.get_template('country.html')
+#     context = {
+#         'listcountry':mycountry,
+#     }
+#     return HttpResponse(template.render(context, request))
 
-def listacustomer2(request):
-    mycustomers = Customer.objects.all().values()
-    template = loader.get_template('customers2.html')
-    context = {
-        'listcustomer2': mycustomers,
-    }
-    return HttpResponse(template.render(context, request))
+# def listacity(request, id):
+#     mycitys = City.objects.filter(country_id=id)
+#     country = get_object_or_404(Country, pk=id)
+#     template = loader.get_template('city.html')
+#     context = {
+#         'listcity': mycitys,
+# }
 
-def customer_form_view(request):
-    if request.method == 'POST':
-        form = CustomerForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('salva')
-        else:
-            form = CustomerForm()
+#     return HttpResponse(template.render(context, request))
 
-        return render(request, 'Customer_form_template.html', {'form':form})
+# def listaaddress(request, id):
+#     myaddress = Address.objects.filter(city_id=id)
+#     city = get_object_or_404(City, pk=id)
+#     template = loader.get_template('address.html')
+#     context = {
+#         'listaddress': myaddress,
+# }
+
+#     return HttpResponse(template.render(context, request))
+
+# def listacustomer2(request):
+#     mycustomers = Customer.objects.all().values()
+#     template = loader.get_template('customers2.html')
+#     context = {
+#         'listcustomer2': mycustomers,
+#     }
+#     return HttpResponse(template.render(context, request))
+
+# def customer_form_view(request):
+#     if request.method == 'POST':
+#         form = CustomerForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('salva')
+#         else:
+#             form = CustomerForm()
+
+#         return render(request, 'Customer_form_template.html', {'form':form})
     
-def salva(request):
-    return render(request, "salva.html")
+# def salva(request):
+#     return render(request, "salva.html")
