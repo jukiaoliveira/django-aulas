@@ -306,16 +306,59 @@ from .forms import CustomerForm
 #     }
 #     return HttpResponse(template.render(context, request))
 
-# def customer_form_view(request):
-#     if request.method == 'POST':
-#         form = CustomerForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('salva')
-#         else:
-#             form = CustomerForm()
+def customer_form_view(request):
+     if request.method == 'POST':
+         form = CustomerForm(request.POST)
+         if form.is_valid():
+             form.save()
+             return redirect('salva')
+         else:
+             form = CustomerForm()
 
-#         return render(request, 'Customer_form_template.html', {'form':form})
+         return render(request, 'Customer_form_template.html', {'form':form})
     
-# def salva(request):
-#     return render(request, "salva.html")
+def salva(request):
+     return render(request, "salva.html")
+
+def list_customer1(request):
+    search_name = request.GET.get( 'search_name', '' )
+    if search_name:
+        listacustomer = Customer.objects.filter(first_name__contains=search_name) . values()
+    else:
+        listacustomer = Customer.objects.all().values()
+
+        template = loader.get_template('list_customer1.html')
+        context = {
+            'listcustomer1': listacustomer,
+        }
+        return HttpResponse(template.render(context, request))
+    
+def edit_customer1(request, id):
+    customer = get_object_or_404(Customer, pk=id)
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('list_customer1')
+    else:
+        form = CustomerForm(instance=customer)
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'edit_customer1.html', context)
+
+def add_customer1(request):
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_customer1')
+    else:
+        form = CustomerForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'add_customer1.html', context)

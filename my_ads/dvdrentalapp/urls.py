@@ -23,4 +23,7 @@ urlpatterns = [
     # path('listacustomer2/', views.listacustomer2, name='listacustomer2'),
     # path('customer_form/', views.customer_form_view, name='customer_form_view'),
     # path('salva', views.salva, name='salva'),
+    path('list_customer1/',views.list_customer1, name= 'list_customer1'),
+    path('edit_customer1/<int:id>', views.edit_customer1, name= 'edit_customer1'),
+    path('add_customer1', views.add_customer1, name= 'add_customer1'),
 ]
